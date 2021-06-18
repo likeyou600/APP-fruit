@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/cleargameback">
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.126"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.924"
+        app:srcCompat="@drawable/_4" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.866"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.924"
+        app:srcCompat="@drawable/_4" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="309dp"
+        android:layout_height="73dp"
+        android:background="@drawable/bg_round_button"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.005"
+        app:srcCompat="@drawable/booook" />
+
+    <TextView
+        android:id="@+id/highscore"
+        android:layout_width="201dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="564dp"
+        android:background="@drawable/bg_round_button"
+        android:gravity="center"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/back"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_marginTop="5dp"
+        android:background="#00FFFFFF"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/highscore"
+        app:srcCompat="@drawable/dh" />
+
+    <TableLayout
+        android:id="@+id/tableLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:background="#6FB3E8"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.234">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="4">
+
+            <ImageButton
+                android:id="@+id/f1button"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/bg_round_button"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/f" />
+
+            <ImageButton
+                android:id="@+id/f2button"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/bg_round_button"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/f" />
+
+            <ImageButton
+                android:id="@+id/f3button"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/bg_round_button"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/f" />
+
+            <ImageButton
+                android:id="@+id/f4button"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/bg_round_button"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/f" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="4">
+
+            <ImageButton
+                android:id="@+id/f5button"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/bg_round_button"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/f" />
+
+            <ImageButton
+                android:id="@+id/f6button"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/bg_round_button"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/f" />
+
+            <ImageButton
+                android:id="@+id/f7button"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/bg_round_button"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/f" />
+
+            <ImageButton
+                android:id="@+id/f8button"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/bg_round_button"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/f" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="4">
+
+            <ImageButton
+                android:id="@+id/f9button"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/bg_round_button"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/f" />
+
+            <ImageButton
+                android:id="@+id/f10button"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/bg_round_button"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/f" />
+
+            <ImageButton
+                android:id="@+id/f11button"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/bg_round_button"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/f" />
+
+            <ImageButton
+                android:id="@+id/f12button"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/bg_round_button"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/f" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="4">
+
+            <ImageButton
+                android:id="@+id/f13button"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/bg_round_button"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/f" />
+
+            <ImageButton
+                android:id="@+id/f14button"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/bg_round_button"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/f" />
+
+            <ImageButton
+                android:id="@+id/f15button"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/bg_round_button"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/f" />
+
+            <ImageButton
+                android:id="@+id/f16button"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/bg_round_button"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/f" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="4">
+
+            <ImageButton
+                android:id="@+id/f17button"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/bg_round_button"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/f" />
+
+            <ImageButton
+                android:id="@+id/f18button"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/bg_round_button"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/f" />
+
+            <ImageButton
+                android:id="@+id/f19button"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/bg_round_button"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/f" />
+
+            <ImageButton
+                android:id="@+id/f20button"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/bg_round_button"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/f" />
+
+        </TableRow>
+
+
+    </TableLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
