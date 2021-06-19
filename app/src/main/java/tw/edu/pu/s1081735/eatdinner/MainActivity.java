@@ -6,8 +6,11 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,9 +19,10 @@ import android.widget.ImageButton;
 
 import com.facebook.stetho.Stetho;
 
+
 public class MainActivity extends AppCompatActivity {
     private ImageButton start,book,setting;
-    Bitmap yourBitmap;
+    public SqlDataBaseHelper DH= null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +32,41 @@ public class MainActivity extends AppCompatActivity {
         book= findViewById(R.id.book);
         setting=findViewById(R.id.setting);
         Stetho.initializeWithDefaults(this);
+
+        DH = new SqlDataBaseHelper(MainActivity.this);
+        SQLiteDatabase db = DH.getWritableDatabase();
+        Cursor c = db.rawQuery("SELECT * FROM gamer", null);
+        c.moveToFirst();
+        Log.d("XXXXX","f"+c.getColumnCount());
+        if(c.getColumnCount()<10){
+            db.execSQL("DROP TABLE IF EXISTS gamer");
+
+            db.execSQL("CREATE TABLE IF NOT EXISTS gamer( " +
+                    "_id INTEGER PRIMARY KEY AUTOINCREMENT DEFAULT 1, " +
+                    "_score VARCHAR(10) DEFAULT 0," +
+                    "_f1 tinyint(1) DEFAULT 0,"+
+                    "_f2 tinyint(1) DEFAULT 0,"+
+                    "_f3 tinyint(1) DEFAULT 0,"+
+                    "_f4 tinyint(1) DEFAULT 0,"+
+                    "_f5 tinyint(1) DEFAULT 0,"+
+                    "_f6 tinyint(1) DEFAULT 0,"+
+                    "_f7 tinyint(1) DEFAULT 0,"+
+                    "_f8 tinyint(1) DEFAULT 0,"+
+                    "_f9 tinyint(1) DEFAULT 0,"+
+                    "_f10 tinyint(1) DEFAULT 0,"+
+                    "_f11 tinyint(1) DEFAULT 0,"+
+                    "_f12 tinyint(1) DEFAULT 0,"+
+                    "_f13 tinyint(1) DEFAULT 0,"+
+                    "_f14 tinyint(1) DEFAULT 0,"+
+                    "_f15 tinyint(1) DEFAULT 0,"+
+                    "_f16 tinyint(1) DEFAULT 0,"+
+                    "_f17 tinyint(1) DEFAULT 0,"+
+                    "_f18 tinyint(1) DEFAULT 0,"+
+                    "_f19 tinyint(1) DEFAULT 0,"+
+                    "_f20 tinyint(1) DEFAULT 0"+
+                    ");");
+            DH.close();
+        }
 
         start.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -87,5 +126,7 @@ public class MainActivity extends AppCompatActivity {
                         | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_FULLSCREEN);
     }
+
+
 
 }
