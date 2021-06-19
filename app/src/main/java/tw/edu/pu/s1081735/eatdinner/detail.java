@@ -1,6 +1,7 @@
 package tw.edu.pu.s1081735.eatdinner;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,6 +18,7 @@ public class detail extends AppCompatActivity {
     private ImageView selectfruit;
     private TextView information;
     private ImageButton back;
+    MediaPlayer mediaPlayerclick;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +27,8 @@ public class detail extends AppCompatActivity {
         selectfruit = findViewById(R.id.selectfruit);
         information = findViewById(R.id.information);
         back = findViewById(R.id.back);
+        back.setSoundEffectsEnabled(false);
+        mediaPlayerclick = MediaPlayer.create(getApplicationContext(), R.raw.click);
 
         Bundle bundle = getIntent().getExtras();
         String infor = bundle.getString("key");
@@ -41,8 +45,18 @@ public class detail extends AppCompatActivity {
                 Intent intent = new Intent(detail.this, book.class);
                 startActivity(intent);
                 finish();
+                mediaPlayerclick.start();
+
             }
         });
+        View decorView = getWindow().getDecorView();
+// Hide both the navigation bar and the status bar.
+// SYSTEM_UI_FLAG_FULLSCREEN is only available on Android 4.1 and higher, but as
+// a general rule, you should design your app to hide the status bar whenever you
+// hide the navigation bar.
+        int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(uiOptions);
     }
     @Override
     public void onBackPressed() {

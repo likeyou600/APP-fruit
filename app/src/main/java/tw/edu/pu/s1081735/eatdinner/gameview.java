@@ -5,6 +5,7 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -24,16 +25,16 @@ import java.util.TimerTask;
 
 public class gameview extends AppCompatActivity {
     private ImageView boss,light,arrow,left,right;
-    private TextView test,win,life,black,rule;
+    private TextView test,win,life,black,rule,homebacktext,againtext2;
     private Button tap,gamestart;
-    private ImageButton pausebutton;
+    private ImageButton pausebutton,homeback,againgame;
     boolean gameplaying = true;
 
     public boolean strong=false,strongprotect=false;
     public int userlife=5,wintime=0;
     public int speed=2500;
     public float imageYPosition;
-    public long time;
+    MediaPlayer mediaPlayerstart,mediaPlayerattack,mediaPlayerclick,music;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,15 +43,28 @@ public class gameview extends AppCompatActivity {
         win = findViewById(R.id.win);
         life = findViewById(R.id.life);
         tap = findViewById(R.id.tap);
+        tap.setSoundEffectsEnabled(false);
         light= findViewById(R.id.light);
         test= findViewById(R.id.test);
         pausebutton = findViewById(R.id.pausebutton);
+        pausebutton.setSoundEffectsEnabled(false);
         gamestart=findViewById(R.id.gamestart);
+        gamestart.setSoundEffectsEnabled(false);
         black=findViewById(R.id.black);
         rule=findViewById(R.id.rule);
         arrow=findViewById(R.id.arrow);
         left=findViewById(R.id.left);
         right=findViewById(R.id.right);
+        homebacktext=findViewById(R.id.homebacktext);
+        againtext2=findViewById(R.id.againtext2);
+        homeback=findViewById(R.id.homeback);
+        homeback.setSoundEffectsEnabled(false);
+        againgame=findViewById(R.id.againgame);
+        againgame.setSoundEffectsEnabled(false);
+        mediaPlayerstart=MediaPlayer.create(getApplicationContext(), R.raw.gogo);
+        mediaPlayerattack=MediaPlayer.create(getApplicationContext(), R.raw.attack);
+        mediaPlayerclick=MediaPlayer.create(getApplicationContext(), R.raw.click);
+        music=MediaPlayer.create(getApplicationContext(), R.raw.music);
         ObjectAnimator translateYAnimation = ObjectAnimator.ofFloat(boss, "translationY", 0, 1100);
         translateYAnimation.setRepeatCount(ValueAnimator.INFINITE);
 
@@ -64,6 +78,8 @@ public class gameview extends AppCompatActivity {
                 rule.setVisibility(View.INVISIBLE);
                 gamestart.setVisibility(View.INVISIBLE);
                 arrow.setVisibility(View.INVISIBLE);
+                mediaPlayerstart.start();
+                music.start();
                 set.play(translateYAnimation);
                 set.start();
             }
@@ -83,7 +99,7 @@ public class gameview extends AppCompatActivity {
 //                Log.d("XXXwin", String.valueOf(wintime));
                 if (userlife == 0) {
                     set.cancel();
-
+                    music.stop();
 
                     Intent intent = new Intent(gameview.this, settle.class);
 
@@ -110,6 +126,7 @@ public class gameview extends AppCompatActivity {
                                 light.setVisibility(View.VISIBLE);
                                 left.setVisibility(View.VISIBLE);
                                 right.setVisibility(View.VISIBLE);
+                                mediaPlayerattack.start();
                             }
 
                             @Override
@@ -150,6 +167,7 @@ public class gameview extends AppCompatActivity {
                     speed -= 50;
                 }
 
+
                 set.cancel();
                 set.setDuration(speed);
                 set.start();
@@ -168,17 +186,61 @@ public class gameview extends AppCompatActivity {
                     tap.setEnabled(false);
                     gameplaying=false;
                     pausebutton.setImageResource(R.drawable.st);
-
+                    homeback.setVisibility(View.VISIBLE);
+                    homebacktext.setVisibility(View.VISIBLE);
+                    againgame.setVisibility(View.VISIBLE);
+                    againtext2.setVisibility(View.VISIBLE);
+                    black.setVisibility(View.VISIBLE);
+                    mediaPlayerclick.start();
+                    music.pause();
                 }
                 else {
                     tap.setEnabled(true);
                     set.resume();
                     gameplaying=true;
                     pausebutton.setImageResource(R.drawable.pau);
+                    homeback.setVisibility(View.INVISIBLE);
+                    homebacktext.setVisibility(View.INVISIBLE);
+                    againgame.setVisibility(View.INVISIBLE);
+                    againtext2.setVisibility(View.INVISIBLE);
+                    black.setVisibility(View.INVISIBLE);
+                    mediaPlayerclick.start();
+                    music.start();
 
                 }
             }
         });
+
+        homeback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mediaPlayerclick.start();
+                music.stop();
+                Intent intent = new Intent(gameview.this,MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        againgame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mediaPlayerclick.start();
+                music.stop();
+                Intent intent = new Intent(gameview.this,gameview.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        View decorView = getWindow().getDecorView();
+// Hide both the navigation bar and the status bar.
+// SYSTEM_UI_FLAG_FULLSCREEN is only available on Android 4.1 and higher, but as
+// a general rule, you should design your app to hide the status bar whenever you
+// hide the navigation bar.
+        int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(uiOptions);
     }
 
 

@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.BitmapFactory;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -24,6 +25,8 @@ public class settle extends AppCompatActivity {
     public SqlDataBaseHelper DH= null;
     public ImageView nowget,newlogo;
     String score;
+    MediaPlayer mediaPlayerclick,mediaPlayerstart;
+
 
     public int oldscore,id,intscore;
 
@@ -34,9 +37,13 @@ public class settle extends AppCompatActivity {
         setContentView(R.layout.settle);
         fin=findViewById(R.id.fin);
         backhome=findViewById(R.id.back);
+        backhome.setSoundEffectsEnabled(false);
         again=findViewById(R.id.again);
+        again.setSoundEffectsEnabled(false);
         nowget=findViewById(R.id.nowget);
         newlogo=findViewById(R.id.newlogo);
+        mediaPlayerclick = MediaPlayer.create(getApplicationContext(), R.raw.click);
+        mediaPlayerstart= MediaPlayer.create(getApplicationContext(), R.raw.gogo);
         Bundle bundle = getIntent().getExtras();
         score = bundle.getString("key");
 
@@ -52,6 +59,7 @@ public class settle extends AppCompatActivity {
         backhome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mediaPlayerclick.start();
                 Intent intent = new Intent(settle.this,MainActivity.class);
                 startActivity(intent);
                 finish();
@@ -61,6 +69,7 @@ public class settle extends AppCompatActivity {
         again.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mediaPlayerstart.start();
                 Intent intent = new Intent(settle.this,gameview.class);
                 startActivity(intent);
                 finish();
@@ -70,8 +79,14 @@ public class settle extends AppCompatActivity {
 
         DH = new SqlDataBaseHelper(settle.this);
         add(Integer.parseInt(score));
-
-    }
+        View decorView = getWindow().getDecorView();
+// Hide both the navigation bar and the status bar.
+// SYSTEM_UI_FLAG_FULLSCREEN is only available on Android 4.1 and higher, but as
+// a general rule, you should design your app to hide the status bar whenever you
+// hide the navigation bar.
+        int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(uiOptions);    }
 
     private void add(int newscore) {
         SQLiteDatabase db = DH.getWritableDatabase();

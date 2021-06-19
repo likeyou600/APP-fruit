@@ -3,6 +3,7 @@ package tw.edu.pu.s1081735.eatdinner;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -34,13 +35,17 @@ public class book extends AppCompatActivity {
     public SqlDataBaseHelper DH= null;
     public int score;
     public ArrayList<String> show=new ArrayList();
+    MediaPlayer mediaPlayerclick,mediaPlayerget;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.book);
         bookback = findViewById(R.id.back);
+        bookback.setSoundEffectsEnabled(false);
         highscore = findViewById(R.id.highscore);
-
+        mediaPlayerclick = MediaPlayer.create(getApplicationContext(), R.raw.click);
+        mediaPlayerget = MediaPlayer.create(getApplicationContext(), R.raw.get);
         ImageButton[]  ImageButton = new ImageButton[20];
         for (int j = 0; j <20; j++) {
             int c=j+1;
@@ -83,6 +88,7 @@ public class book extends AppCompatActivity {
         bookback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mediaPlayerclick.start();
                 Intent intent = new Intent(book.this, MainActivity.class);
                 startActivity(intent);
                 finish();
@@ -122,6 +128,15 @@ public class book extends AppCompatActivity {
                     }
                 });
             }
+
+        View decorView = getWindow().getDecorView();
+// Hide both the navigation bar and the status bar.
+// SYSTEM_UI_FLAG_FULLSCREEN is only available on Android 4.1 and higher, but as
+// a general rule, you should design your app to hide the status bar whenever you
+// hide the navigation bar.
+        int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(uiOptions);
     }
 
 
@@ -167,7 +182,7 @@ public class book extends AppCompatActivity {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
 
-//            Log.d("JSON", s);
+            Log.d("JSON", s);
             JSONArray allData =null;
             try {
                 allData = new JSONArray (s);
@@ -194,6 +209,7 @@ public class book extends AppCompatActivity {
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
+
         if (hasFocus) {
             hideSystemUI();
         }

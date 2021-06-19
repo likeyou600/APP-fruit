@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -23,6 +24,8 @@ import com.facebook.stetho.Stetho;
 public class MainActivity extends AppCompatActivity {
     private ImageButton start,book,setting;
     public SqlDataBaseHelper DH= null;
+    MediaPlayer mediaPlayerclick,mediaPlayerstart;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +34,12 @@ public class MainActivity extends AppCompatActivity {
         start= findViewById(R.id.start);
         book= findViewById(R.id.book);
         setting=findViewById(R.id.setting);
+        start.setSoundEffectsEnabled(false);
+        book.setSoundEffectsEnabled(false);
+        setting.setSoundEffectsEnabled(false);
         Stetho.initializeWithDefaults(this);
+        mediaPlayerstart = MediaPlayer.create(getApplicationContext(), R.raw.gogo);
+        mediaPlayerclick = MediaPlayer.create(getApplicationContext(), R.raw.click);
 
         DH = new SqlDataBaseHelper(MainActivity.this);
         SQLiteDatabase db = DH.getWritableDatabase();
@@ -85,13 +93,18 @@ public class MainActivity extends AppCompatActivity {
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mediaPlayerstart.start();
+
                 Intent intent = new Intent(MainActivity.this,gameview.class);
                 startActivity(intent);
+
             }
         });
         book.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mediaPlayerclick.start();
+
                 Intent intent = new Intent(MainActivity.this,book.class);
                 startActivity(intent);
             }
@@ -99,10 +112,20 @@ public class MainActivity extends AppCompatActivity {
         setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mediaPlayerclick.start();
                 Intent intent = new Intent(MainActivity.this,setting.class);
                 startActivity(intent);
             }
         });
+
+        View decorView = getWindow().getDecorView();
+// Hide both the navigation bar and the status bar.
+// SYSTEM_UI_FLAG_FULLSCREEN is only available on Android 4.1 and higher, but as
+// a general rule, you should design your app to hide the status bar whenever you
+// hide the navigation bar.
+        int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(uiOptions);
     }
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {

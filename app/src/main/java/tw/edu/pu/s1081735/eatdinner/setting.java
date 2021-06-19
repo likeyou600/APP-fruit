@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -15,17 +16,23 @@ import androidx.appcompat.app.AppCompatActivity;
 public class setting extends AppCompatActivity {
         private ImageButton back2,resetdb;
     public SqlDataBaseHelper DH= null;
+    MediaPlayer mediaPlayerclick,mediaPlayerdelete;
+
 
     protected void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.setting);
         back2 = findViewById(R.id.back2);
+        back2.setSoundEffectsEnabled(false);
         resetdb=findViewById(R.id.resetdb);
-
+        resetdb.setSoundEffectsEnabled(false);
+        mediaPlayerclick = MediaPlayer.create(getApplicationContext(), R.raw.click);
+        mediaPlayerdelete= MediaPlayer.create(getApplicationContext(),R.raw.delete);
 
         back2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                mediaPlayerclick.start();
                 Intent intent = new Intent(setting.this,MainActivity.class);
                 startActivity(intent);
                 finish();
@@ -65,9 +72,17 @@ public class setting extends AppCompatActivity {
                         ");");
                 DH.close();
                 Toast.makeText(setting.this,"成功重置~",Toast.LENGTH_LONG).show();
+                mediaPlayerdelete.start();
             }
         });
-
+        View decorView = getWindow().getDecorView();
+// Hide both the navigation bar and the status bar.
+// SYSTEM_UI_FLAG_FULLSCREEN is only available on Android 4.1 and higher, but as
+// a general rule, you should design your app to hide the status bar whenever you
+// hide the navigation bar.
+        int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(uiOptions);
     }
     @Override
     public void onBackPressed() {
