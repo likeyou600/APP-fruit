@@ -23,15 +23,15 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class gameview extends AppCompatActivity {
-    private ImageView boss,light;
-    private TextView test,win,life;
-    private Button tap;
+    private ImageView boss,light,arrow,left,right;
+    private TextView test,win,life,black,rule;
+    private Button tap,gamestart;
     private ImageButton pausebutton;
     boolean gameplaying = true;
 
     public boolean strong=false,strongprotect=false;
     public int userlife=5,wintime=0;
-    public int speed=2000;
+    public int speed=2500;
     public float imageYPosition;
     public long time;
 
@@ -45,15 +45,30 @@ public class gameview extends AppCompatActivity {
         light= findViewById(R.id.light);
         test= findViewById(R.id.test);
         pausebutton = findViewById(R.id.pausebutton);
-
+        gamestart=findViewById(R.id.gamestart);
+        black=findViewById(R.id.black);
+        rule=findViewById(R.id.rule);
+        arrow=findViewById(R.id.arrow);
+        left=findViewById(R.id.left);
+        right=findViewById(R.id.right);
         ObjectAnimator translateYAnimation = ObjectAnimator.ofFloat(boss, "translationY", 0, 1100);
         translateYAnimation.setRepeatCount(ValueAnimator.INFINITE);
 
 
         AnimatorSet set = new AnimatorSet();
         set.setDuration(speed);
-        set.play(translateYAnimation);
-        set.start();
+        gamestart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                black.setVisibility(View.INVISIBLE);
+                rule.setVisibility(View.INVISIBLE);
+                gamestart.setVisibility(View.INVISIBLE);
+                arrow.setVisibility(View.INVISIBLE);
+                set.play(translateYAnimation);
+                set.start();
+            }
+        });
+
 
 
         translateYAnimation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -88,16 +103,20 @@ public class gameview extends AppCompatActivity {
                             @Override
                             public void onTick(long millisUntilFinished) {
                                 strong = true;
-                                if (imageYPosition <= 840 && imageYPosition >= 720) {
+                                if (imageYPosition <= 840 && imageYPosition >= 650) {
                                     wintime++;
                                     strongprotect = true;
                                 }
                                 light.setVisibility(View.VISIBLE);
+                                left.setVisibility(View.VISIBLE);
+                                right.setVisibility(View.VISIBLE);
                             }
 
                             @Override
                             public void onFinish() {
                                 light.setVisibility(View.INVISIBLE);
+                                left.setVisibility(View.INVISIBLE);
+                                right.setVisibility(View.INVISIBLE);
                                 strong = false;
 
                             }

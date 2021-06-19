@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -63,12 +64,15 @@ public class setting extends AppCompatActivity {
                         "_f20 tinyint(1) DEFAULT 0"+
                         ");");
                 DH.close();
-
+                Toast.makeText(setting.this,"成功重置~",Toast.LENGTH_LONG).show();
             }
         });
 
     }
-
+    @Override
+    public void onBackPressed() {
+        // Do Here what ever you want do on back press;
+    }
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
