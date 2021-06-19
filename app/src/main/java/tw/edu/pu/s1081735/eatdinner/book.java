@@ -101,18 +101,24 @@ public class book extends AppCompatActivity {
                 ImageButton[ib].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        if(show.size()!=0) {
 //                        Toast.makeText(book.this, show.get(finalIb), Toast.LENGTH_LONG).show();
-                        int spic= finalIb1 +1;
-                        String pic = "f"+spic;
-                        int picc = getResources().getIdentifier(pic, "drawable", getPackageName());
+                            int spic = finalIb1 + 1;
+                            String pic = "f" + spic;
+                            int picc = getResources().getIdentifier(pic, "drawable", getPackageName());
 
-                        Intent intent = new Intent(book.this,detail.class);
-                        Bundle bundle = new Bundle();
-                        bundle.putString("key",show.get(finalIb));
-                        bundle.putInt("picc",picc);
+                            Intent intent = new Intent(book.this, detail.class);
+                            Bundle bundle = new Bundle();
+                            bundle.putString("key", show.get(finalIb));
+                            bundle.putInt("picc", picc);
 
-                        intent.putExtras(bundle);
-                        startActivity(intent);
+                            intent.putExtras(bundle);
+                            startActivity(intent);
+                            mediaPlayerget.start();
+                        }
+                        else{
+                            Toast.makeText(book.this,"請稍等，資料載入中",Toast.LENGTH_LONG).show();
+                        }
                     }
                 });
             }
