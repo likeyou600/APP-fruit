@@ -11,7 +11,7 @@ android {
     buildToolsVersion "30.0.2"
 
     defaultConfig {
-        applicationId "tw.edu.pu.s1081735.eatdinner"
+        applicationId "tw.edu.pu.s1081735.eatfruit"
         minSdkVersion 23
         targetSdkVersion 30
         versionCode 1

@@ -1,4 +1,4 @@
-package tw.edu.pu.s1081735.eatdinner;
+package tw.edu.pu.s1081735.eatfruit;
 
 import android.content.Intent;
 import android.media.MediaPlayer;
@@ -10,8 +10,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import java.util.ArrayList;
 
 public class detail extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package tw.edu.pu.s1081735.eatdinner;
+package tw.edu.pu.s1081735.eatfruit;
 
 import android.content.ContentValues;
 import android.content.Context;

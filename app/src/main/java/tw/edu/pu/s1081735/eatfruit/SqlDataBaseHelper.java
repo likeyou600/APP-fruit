@@ -1,10 +1,8 @@
-package tw.edu.pu.s1081735.eatdinner;
+package tw.edu.pu.s1081735.eatfruit;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
-import androidx.annotation.Nullable;
 
 public class SqlDataBaseHelper extends SQLiteOpenHelper {
 

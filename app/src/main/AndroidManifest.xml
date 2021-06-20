@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="tw.edu.pu.s1081735.eatdinner">
+    package="tw.edu.pu.s1081735.eatfruit">
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <application
@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Eatdinner"
         android:configChanges="orientation" android:screenOrientation="portrait">
-        <activity android:name=".MainActivity"
+        <activity android:name="tw.edu.pu.s1081735.eatfruit.MainActivity"
             android:theme="@style/Theme.Eatdinner">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,15 +19,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".gameview"
+        <activity android:name="tw.edu.pu.s1081735.eatfruit.gameview"
             android:theme="@style/Theme.Eatdinner"/>
-        <activity android:name=".settle"
+        <activity android:name="tw.edu.pu.s1081735.eatfruit.settle"
             android:theme="@style/Theme.Eatdinner"/>
-        <activity android:name=".book"
+        <activity android:name="tw.edu.pu.s1081735.eatfruit.book"
             android:theme="@style/Theme.Eatdinner"/>
-        <activity android:name=".setting"
+        <activity android:name="tw.edu.pu.s1081735.eatfruit.setting"
             android:theme="@style/Theme.Eatdinner"/>
-        <activity android:name=".detail"
+        <activity android:name="tw.edu.pu.s1081735.eatfruit.detail"
             android:theme="@style/Theme.Eatdinner"/>
     </application>
 
