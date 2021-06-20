@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">eatfruit</string>
-    <string name="rule">遊戲規則 上面液壓機壓下來後\n點擊下方強化按鈕 \n以保護水果盆栽不被壓到 \n 在沒有強化下的情況下生命-1</string>
+    <string name="rule">點擊下方強化按鈕 \n以保護水果盆栽不被壓到 \n 沒有強化下、一回合強化超過1次 \n生命-1</string>
 </resources>

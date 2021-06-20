@@ -267,7 +267,7 @@ public class settle extends AppCompatActivity {
             db.update("gamer",values,"_id=1",null);
             fin.setText("拯救次數:"+score+"\n獲得水果:"+a[1]);
         }
-        if(intscore>=96&&intscore<=100){
+        if(intscore>=96){
             nowget.setImageResource(R.drawable.f20);
             values.put("_f20",1);
             db.update("gamer",values,"_id=1",null);

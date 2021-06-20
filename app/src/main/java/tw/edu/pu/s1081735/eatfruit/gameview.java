@@ -18,16 +18,18 @@ import android.widget.TextView;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Random;
+
 public class gameview extends AppCompatActivity {
     private ImageView boss,light,arrow,left,right;
     private TextView test,win,life,black,rule,homebacktext,againtext2;
     private Button tap,gamestart;
     private ImageButton pausebutton,homeback,againgame;
-    boolean gameplaying = true;
+    boolean gameplaying = true,stage1=false;
 
-    public boolean strong=false,strongprotect=false;
+    public boolean strongprotect=false;
     public int userlife=5,wintime=0;
-    public int speed=2500;
+    public int speed=2500,strong=0;
     public float imageYPosition;
     MediaPlayer mediaPlayerstart,mediaPlayerattack,mediaPlayerclick,music;
 
@@ -113,24 +115,28 @@ public class gameview extends AppCompatActivity {
 
                             @Override
                             public void onTick(long millisUntilFinished) {
-                                strong = true;
-                                if (imageYPosition <= 840 && imageYPosition >= 650) {
-                                    wintime++;
-                                    strongprotect = true;
-                                }
                                 light.setVisibility(View.VISIBLE);
                                 left.setVisibility(View.VISIBLE);
                                 right.setVisibility(View.VISIBLE);
                                 mediaPlayerattack.start();
+                                strong +=1;
+                                if (imageYPosition <= 840 && imageYPosition >= 650&&strong==1) {
+                                    wintime++;
+                                    strongprotect = true;
+                                }
+
+                                if(strong>=2){
+                                    userlife--;
+                                }
                             }
 
                             @Override
                             public void onFinish() {
-                                light.setVisibility(View.INVISIBLE);
-                                left.setVisibility(View.INVISIBLE);
-                                right.setVisibility(View.INVISIBLE);
-                                strong = false;
-
+                                if(strongprotect!=true) {
+                                    light.setVisibility(View.INVISIBLE);
+                                    left.setVisibility(View.INVISIBLE);
+                                    right.setVisibility(View.INVISIBLE);
+                                }
                             }
                         }.start();
 
@@ -158,18 +164,32 @@ public class gameview extends AppCompatActivity {
 
             @Override
             public void onAnimationRepeat(Animator animation) {
-                if (speed > 1000) {
-                    speed -= 50;
+                if(stage1!=true) {
+                    if (speed > 1500) {
+                        speed -= 50;
+                    }
+                    else {
+                        stage1 = true;
+                    }
+                }else{
+
+                    speed=new Random().nextInt(1800) + 1000;
+
                 }
 
 
                 set.cancel();
                 set.setDuration(speed);
                 set.start();
+
                 if (strongprotect != true) {
                     userlife--;
                 }
                 strongprotect = false;
+                strong=0;
+                light.setVisibility(View.INVISIBLE);
+                left.setVisibility(View.INVISIBLE);
+                right.setVisibility(View.INVISIBLE);
             }
         });
         pausebutton.setOnClickListener(new View.OnClickListener() {
